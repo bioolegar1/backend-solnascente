@@ -2,15 +2,21 @@ package br.com.solnascentegoias.api.entities;
 
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.awt.*;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor // JPA precisa de um construtor sem argumentos
+@AllArgsConstructor // Construtor com todos os argumentos (opcional, mas útil)
 @Entity
 @Table(name = "products")
 public class Product {
