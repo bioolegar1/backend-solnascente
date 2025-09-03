@@ -1,0 +1,31 @@
+package br.com.solnascentegoias.api.dtos;
+
+import br.com.solnascentegoias.api.entities.Product;
+import lombok.Data;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collector;
+
+@Data
+public class ProductResponseDTO {
+    private Long id;
+    private String name;
+    private String description;
+    private List<ImageInfoDTO> images;
+
+    //converte uma Entity em DTO
+    public static ProductResponseDTO fromEntity(Product product) {
+        ProductResponseDTO dto = new ProductResponseDTO();
+        dto.setId(product.getId());
+        dto.setName(product.getName());
+        dto.setDescription(product.getDesciption());
+        dto.setImages(
+            product.getImages().stream()
+                    .map(ImageInfoDTO::fromEntity)
+                    .sorted(Comparator.comparing(ImageInfoDTO::getDisplayOrder))
+                    .collect(Collector.toList())
+                );
+        return dto;
+    }
+}
