@@ -63,4 +63,17 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponseDTO> updateProduct(
+            @PathVariable Long id,
+            @RequestPart("product") @Valid ProductRequestDTO productDTO,
+            @RequestPart(value = "images", required = false) List<MultipartFile> images){
+        try {
+            ProductResponseDTO updatedProduct = productService.updateProduct(id, productDTO, images);
+            return ResponseEntity.ok(updatedProduct);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
