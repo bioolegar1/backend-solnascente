@@ -19,12 +19,12 @@ public class ProductResponseDTO {
         ProductResponseDTO dto = new ProductResponseDTO();
         dto.setId(product.getId());
         dto.setName(product.getName());
-        dto.setDescription(product.getDesciption());
+        dto.setDescription(product.getDescription());
         dto.setImages(
             product.getImages().stream()
                     .map(ImageInfoDTO::fromEntity)
                     .sorted(Comparator.comparing(ImageInfoDTO::getDisplayOrder))
-                    .collect(Collector.toList())
+                    .toList()
                 );
         return dto;
     }

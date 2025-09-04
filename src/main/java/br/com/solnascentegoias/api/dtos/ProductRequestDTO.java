@@ -14,5 +14,5 @@ public class ProductRequestDTO {
     @Size(max = 150, message = "O nome pode ter no máximo 150 caracteres.")
     private String name;
 
-    private String desciption;
+    private String description;
 }

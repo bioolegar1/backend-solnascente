@@ -1,0 +1,10 @@
+br/com/solnascentegoias/api/config/MinioConfig.class
+br/com/solnascentegoias/api/repositories/ProductRepository.class
+br/com/solnascentegoias/api/repositories/ProductImageRepository.class
+br/com/solnascentegoias/api/dtos/ProductResponseDTO.class
+br/com/solnascentegoias/api/dtos/ImageInfoDTO.class
+br/com/solnascentegoias/api/dtos/ProductRequestDTO.class
+br/com/solnascentegoias/api/entities/ProductImage.class
+br/com/solnascentegoias/api/entities/Product.class
+br/com/solnascentegoias/api/SolnascenteApplication.class
+br/com/solnascentegoias/api/services/ProductService.class

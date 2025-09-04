@@ -1,0 +1,44 @@
+# Configurações do Servidor da Aplicação
+server:
+  port: 8080 # Define a porta onde a API vai rodar
+
+# Configurações do Spring Framework
+spring:
+  # ==========================================
+  # CONFIGURAÇÃO DO BANCO DE DADOS (DataSource)
+  # ==========================================
+  datasource:
+    # A URL de conexão com o PostgreSQL que está rodando no Docker.
+    # O banco de dados se chama 'solnascente', conforme definimos no docker-compose.yml.
+    url: jdbc:postgresql://localhost:5432/solnascente
+    # Usuário e senha definidos no docker-compose.yml
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  # ==========================================
+  # CONFIGURAÇÃO DO JPA / HIBERNATE
+  # ==========================================
+  jpa:
+    # 'ddl-auto: update' faz o Hibernate tentar atualizar o esquema do banco de dados
+    # com base nas suas @Entities. Ótimo para desenvolvimento.
+    # Para produção, geralmente usamos 'validate' ou 'none'.
+    hibernate:
+      ddl-auto: update
+    # 'show-sql: true' vai imprimir no console todas as queries SQL que o Hibernate executa.
+    # Excelente para depuração e para aprender o que está acontecendo por baixo dos panos.
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true # Formata o SQL impresso no console para ser mais legível.
+
+# ==========================================
+# CONFIGURAÇÕES CUSTOMIZADAS DA APLICAÇÃO
+# ==========================================
+# Estas são as propriedades que criamos para conectar com o nosso serviço MinIO no Docker.
+minio:
+  # GARANTA QUE ESTA LINHA ESTEJA EXATAMENTE ASSIM
+  endpoint: http://localhost:9000
+  access-key: minioadmin
+  secret-key: minioadmin
+  bucket-name: products

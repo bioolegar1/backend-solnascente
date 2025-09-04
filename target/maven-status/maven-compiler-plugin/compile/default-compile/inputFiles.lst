@@ -1,0 +1,10 @@
+/home/bioolegari/Documentos/WORK-dev/solnascente/backendsolnascente/src/main/java/br/com/solnascentegoias/api/SolnascenteApplication.java
+/home/bioolegari/Documentos/WORK-dev/solnascente/backendsolnascente/src/main/java/br/com/solnascentegoias/api/config/MinioConfig.java
+/home/bioolegari/Documentos/WORK-dev/solnascente/backendsolnascente/src/main/java/br/com/solnascentegoias/api/dtos/ImageInfoDTO.java
+/home/bioolegari/Documentos/WORK-dev/solnascente/backendsolnascente/src/main/java/br/com/solnascentegoias/api/dtos/ProductRequestDTO.java
+/home/bioolegari/Documentos/WORK-dev/solnascente/backendsolnascente/src/main/java/br/com/solnascentegoias/api/dtos/ProductResponseDTO.java
+/home/bioolegari/Documentos/WORK-dev/solnascente/backendsolnascente/src/main/java/br/com/solnascentegoias/api/entities/Product.java
+/home/bioolegari/Documentos/WORK-dev/solnascente/backendsolnascente/src/main/java/br/com/solnascentegoias/api/entities/ProductImage.java
+/home/bioolegari/Documentos/WORK-dev/solnascente/backendsolnascente/src/main/java/br/com/solnascentegoias/api/repositories/ProductImageRepository.java
+/home/bioolegari/Documentos/WORK-dev/solnascente/backendsolnascente/src/main/java/br/com/solnascentegoias/api/repositories/ProductRepository.java
+/home/bioolegari/Documentos/WORK-dev/solnascente/backendsolnascente/src/main/java/br/com/solnascentegoias/api/services/ProductService.java

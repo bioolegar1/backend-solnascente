@@ -29,7 +29,7 @@ public class Product {
     private String name;
 
     @Column(columnDefinition = "TEXT")
-    private String desciption;
+    private String description;
 
     // cascade = CascadeType.ALL: Se salvarmos/deletarmos um produto, as imagens associadas também serão.
     // orphanRemoval = true: Se removermos uma imagem da lista deste produto, ela será deletada do banco.
