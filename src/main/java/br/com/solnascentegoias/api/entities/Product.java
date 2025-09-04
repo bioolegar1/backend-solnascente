@@ -1,6 +1,7 @@
 package br.com.solnascentegoias.api.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,6 +42,11 @@ public class Product {
 
     @UpdateTimestamp
     private Instant updatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    @JsonIgnore
+    private Category category;
 
     //Metodo auxiliar para sincronizar a relação
     public void addImage(ProductImage image) {
