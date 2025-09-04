@@ -2,11 +2,14 @@ package br.com.solnascentegoias.api.services;
 
 import br.com.solnascentegoias.api.dtos.ProductRequestDTO;
 import br.com.solnascentegoias.api.dtos.ProductResponseDTO;
+import br.com.solnascentegoias.api.entities.Category;
 import br.com.solnascentegoias.api.entities.Product;
 import br.com.solnascentegoias.api.entities.ProductImage;
+import br.com.solnascentegoias.api.repositories.CategoryRepository;
 import br.com.solnascentegoias.api.repositories.ProductRepository;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import io.minio.RemoveObjectArgs;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,22 +26,31 @@ public class ProductService {
     private final MinioClient minioClient;
     private final String bucketName;
     private final String minioEndpoint;
+    private final CategoryRepository categoryRepository;
 
     public ProductService(ProductRepository productRepository,
                           MinioClient minioClient,
                           @Value("${minio.bucket-name}") String bucketName,
-                          @Value("${minio.endpoint}") String minioEndpoint) {
+                          @Value("${minio.endpoint}") String minioEndpoint,
+                          CategoryRepository categoryRepository) {
+
         this.productRepository = productRepository;
         this.minioClient = minioClient;
         this.bucketName = bucketName;
         this.minioEndpoint = minioEndpoint;
+        this.categoryRepository = categoryRepository;
     }
+
+ //metodo de criação de produto
 
     @Transactional
     public ProductResponseDTO createProduct(ProductRequestDTO productDTO, List<MultipartFile> files) {
+        Category category = categoryRepository.findById(productDTO.getCategoryId())
+                .orElseThrow(()-> new RuntimeException("Categoria não encontrada"));
         Product product = new Product();
         product.setName(productDTO.getName());
         product.setDescription(productDTO.getDescription());
+        product.setCategory(category);
         Product savedProduct = productRepository.save(product);
 
         int displayOrder = 1;
@@ -97,7 +109,7 @@ public class ProductService {
                 String objectName = image.getImageUrl().substring(image.getImageUrl().lastIndexOf("/") + 1);
 
                 minioClient.removeObject(
-                        io.minio.RemoveObjectArgs.builder()
+                        RemoveObjectArgs.builder()
                                 .bucket(bucketName)
                                 .object(objectName)
                                 .build()
@@ -122,7 +134,7 @@ public class ProductService {
                 try {
                     String objectName = image.getImageUrl().substring(image.getImageUrl().lastIndexOf("/") + 1);
                     minioClient.removeObject(
-                            io.minio.RemoveObjectArgs.builder()
+                            RemoveObjectArgs.builder()
                                     .bucket(bucketName)
                                     .object(objectName)
                                     .build()
